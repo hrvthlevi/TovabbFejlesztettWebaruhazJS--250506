@@ -233,7 +233,7 @@ DELETE /api/termekek/:id         # Termék törlése
 
 ---
 
-## 📋 Adatformátum
+## Adatformátum
 
 ### Termék (termekek.json)
 
@@ -262,7 +262,7 @@ DELETE /api/termekek/:id         # Termék törlése
 
 ---
 
-## 🚀 Webshop.js – Vezérlő Logika
+## Webshop.js – Vezérlő Logika
 
 **Központi alkalmazás vezérlő**:
 
@@ -304,7 +304,7 @@ nezetValtas(shop|login|kosar|admin)
 
 ---
 
-## 📱 Responsive Breakpoints
+## Responsive Breakpoints
 
 ```css
 /* Desktop */
