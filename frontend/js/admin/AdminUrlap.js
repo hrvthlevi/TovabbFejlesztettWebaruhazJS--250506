@@ -1,8 +1,12 @@
+import { AdatService } from "../AdatService.js";
+
 export class AdminUrlap {
   #szuloElem;
+  #adatService;
 
   constructor(szuloElem) {
     this.#szuloElem = szuloElem;
+    this.#adatService = new AdatService();
     this.megjelenit();
   }
 
@@ -12,8 +16,19 @@ export class AdminUrlap {
         <form id="uj-termek-form">
             <input type="text" id="nev" placeholder="Név" required>
             <input type="text" id="szerzo" placeholder="Szerző">
+            <select id="kategoria" required>
+                <option value="">-- Válassz kategóriát --</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Disztópia">Disztópia</option>
+                <option value="Ismeretterjesztő">Ismeretterjesztő</option>
+                <option value="Krimi">Krimi</option>
+                <option value="Sci-fi">Sci-fi</option>
+                <option value="Klasszikus">Klasszikus</option>
+                <option value="Horror">Horror</option>
+            </select>
             <input type="number" id="ar" placeholder="Ár" required>
             <input type="text" id="kep" placeholder="Kép URL">
+            <input type="text" id="leiras" placeholder="Leírás">
             <button type="submit">Mentés</button>
         </form>
     `;
@@ -29,27 +44,23 @@ export class AdminUrlap {
       const adat = {
         nev: document.getElementById("nev").value,
         szerzo: document.getElementById("szerzo").value,
+        kategoria: document.getElementById("kategoria").value,
         ar: Number(document.getElementById("ar").value),
         kep: document.getElementById("kep").value,
-        kategoria: "",
-        leiras: "",
+        leiras: document.getElementById("leiras").value,
       };
 
-      fetch("http://localhost:3000/api/termekek", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(adat),
-      })
-        .then((res) => res.json())
+      this.#adatService.post("/api/termekek", adat)
         .then((valasz) => {
           console.log("Siker:", valasz);
           alert("Termék hozzáadva!");
-
           form.reset();
+          window.dispatchEvent(new CustomEvent("ujAdatFelvitel", { detail: adat }));
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+          console.error("Hiba:", err);
+          alert("Hiba a mentéskor: " + err.message);
+        });
     });
   }
 

@@ -19,10 +19,10 @@ megjelenit() {
         <div class="kosar-elem">
             <div class="kosar-info">
                 <span><strong>${this.#termekAdat.nev}</strong></span>
-                <span>${this.getAr()} Ft</span>
+                <span class="ar">${this.getAr()} Ft</span>
             </div>
             <div class="kosar-vezerlok">
-                <button class="csokken-btn">-</button>
+                <button class="csokken-btn">−</button>
                 <span class="db">${this.#db} db</span>
                 <button class="novel-btn">+</button>
                 <button class="torol-btn">Törlés</button>

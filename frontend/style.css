@@ -179,7 +179,8 @@ button[data-nav="logout-gomb"]:hover {
   padding: 2rem 0 4rem;
 }
 
-#product-list {
+#product-list,
+.book-grid {
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -409,11 +410,26 @@ button[data-nav="logout-gomb"]:hover {
   color: var(--accent);
 }
 
-#uj-termek-form input {
+#uj-termek-form input,
+#uj-termek-form select {
   padding: 0.8rem;
   border: 1px solid var(--border);
   border-radius: 6px;
   font-family: inherit;
+  background: white;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+#uj-termek-form select {
+  cursor: pointer;
+}
+
+#uj-termek-form input:focus,
+#uj-termek-form select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(139, 94, 52, 0.1);
 }
 
 #uj-termek-form button {
@@ -425,6 +441,11 @@ button[data-nav="logout-gomb"]:hover {
   cursor: pointer;
   font-weight: 700;
   font-size: 1rem;
+  transition: background 0.3s;
+}
+
+#uj-termek-form button:hover {
+  background: #7a4e2b;
 }
 
 .site-footer {
@@ -437,6 +458,135 @@ button[data-nav="logout-gomb"]:hover {
 
 .hidden {
   display: none !important;
+}
+
+
+.login-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+#login-form h3 {
+  margin-top: 0;
+  text-align: center;
+  color: var(--accent);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#login-form input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+#login-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(139, 94, 52, 0.1);
+}
+
+#login-form button {
+  width: 100%;
+  padding: 1rem;
+}
+
+.admin-urlap-container {
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(52, 41, 25, 0.05);
+}
+
+.admin-urlap-container h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1.3rem;
+}
+
+.kosar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.kosar-info strong {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.kosar-info .ar {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.kosar-vezerlok {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-left: 1rem;
+}
+
+.kosar-vezerlok .db {
+  color: var(--muted);
+  font-weight: 600;
+  min-width: 50px;
+  text-align: center;
+}
+
+.kosar-vezerlok button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.kosar-vezerlok button:hover {
+  background: #7a4e2b;
+  transform: scale(1.05);
+}
+
+.kosar-vezerlok .torol-btn {
+  background: var(--danger);
+  padding: 0.4rem 0.8rem;
+}
+
+.kosar-vezerlok .torol-btn:hover {
+  background: #a93226;
+}
+
+.osszesito {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--border);
+  text-align: right;
+}
+
+.osszesito h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.osszesito .buy-button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 768px) {
@@ -458,5 +608,30 @@ button[data-nav="logout-gomb"]:hover {
 
   .filter-group {
     max-width: none;
+  }
+
+  .kosar-elem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .kosar-vezerlok {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #product-list {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .login-container {
+    margin: 1rem auto;
+    padding: 1.5rem;
+  }
+
+  .admin-urlap-container {
+    padding: 1rem;
   }
 }

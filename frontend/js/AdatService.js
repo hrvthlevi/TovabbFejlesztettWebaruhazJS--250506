@@ -1,5 +1,5 @@
 export class AdatService {
-    #BASE_URL = "http://192.168.31.228:3000"; 
+    #BASE_URL = "http://localhost:3000"; 
 
     async get(vegpont) {
         try {

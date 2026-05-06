@@ -1,185 +1,403 @@
-﻿# Webáruház JavaScript + Node/Express
+# Könyvkuckó – Webáruház
 
-Ez a projekt egy egyszerű webáruház, amelyben a `frontend` rész kliensoldali modulokból épül fel, a `backend` pedig egy Express szerver, amely a termékadatokat szolgáltatja.
+**Teljes körűen működő webáruház alkalmazás** egy online könyvesbolt szimulációjával. Modern, responsive UI, bejelentkezési rendszer, kosár kezelés, pont gyűjtés, keresés, kategória szűrés és teljes admin panel.
 
-## Fájlstruktúra
+**Technológia**: Node.js + Express | vanilla ES6+ JavaScript Modules | CSS3 (Grid, Flexbox, CSS Variables)
 
-- `backend/`
-  - `app.js` – az Express szerver és a statikus fájlok kiszolgálása
-  - `routes/termekRoutes.js` – API útvonalak a termékek lekéréséhez és törléséhez
-  - `controllers/TermekController.js` – a route-okon keresztüli kérések kezelése
-  - `models/TermekModel.js` – a termékadatok olvasása és törlése a `termekek.json` fájlból
-  - `config/db.js` – MySQL kapcsolatot definiáló fájl, jelenleg a projekt nem használja
-- `frontend/`
-  - `index.html` – a kliensoldali alkalmazás belépési pontja
-  - `js/` – az összes frontend modul
-- `termekek.json` – a backend által használt termékadatokat tároló fájl
-- `README.md` – ez a dokumentáció
+---
 
-> Megjegyzés: a gyökérben található `js/` mappa jelen projektben duplikátum, mert a valódi frontend modulok a `frontend/js/` alatt találhatók. A `backend` szerver a `frontend` mappát szolgáltatja statikus tartalomként.
+## Gyors Indítás
 
-## Indítás
-
-A projektet a `backend` mappából kell indítani:
-
-```powershell
+```bash
 cd backend
+npm install
 node app.js
 ```
 
-Ezután nyisd meg a böngészőt a következő címen:
+Majd nyisd meg: **http://localhost:3000/**
+
+**Demo bejelentkezés:**
+- **Admin**: `admin@kucko.hu` / `admin123`
+- **User**: `user@kucko.hu` / `user123`
+
+---
+
+## Projekt Struktúra
 
 ```
-http://localhost:3000/
+backend/
+  ├─ app.js                    # Express szerver + statikus frontend kiszolgálás
+  ├─ package.json              # Dependencies (cors, express, mysql2, dotenv)
+  ├─ termekek.json             # Termékhalmozás (12+ könyv + SVG képek)
+  ├─ routes/
+  │  └─ termekRoutes.js        # API útvonalak (GET, POST, DELETE)
+  ├─ controllers/
+  │  └─ TermekController.js    # CRUD logika (getAll, create, delete)
+  ├─ models/
+  │  └─ TermekModel.js         # Adatbázis műveletek (JSON fájl alapú)
+  └─ config/
+     └─ db.js                  # MySQL config (jelenleg nincs aktív)
+
+frontend/
+  ├─ index.html                # HTML belépési pont + header + nav
+  ├─ style.css                 # Modern CSS (Grid, Flexbox, Variables)
+  └─ js/
+     ├─ main.js                # App inicializáció
+     ├─ Webshop.js             # Központi vezérlő (nézet váltás, events)
+     ├─ AdatService.js         # API kommunikáció (get, post, delete)
+     ├─ auth.js                # Bejelentkezési adatok + hitelesítés
+     ├─ Termekek.js            # Termék lista kezelés (keres, szur)
+     ├─ Termek.js              # Egyetlen termék komponens
+     ├─ Kosar.js               # Kosár logika + pont gyűjtés
+     ├─ KosarElem.js           # Kosár elem komponens
+     └─ admin/
+        ├─ AdminTermekek.js    # Admin nézet + admin tábla
+        ├─ AdminUrlap.js       # Új termék forma + POST kérés
+        └─ TermekAdmin.js      # Termék sorkezelés (törlés)
 ```
 
-## Backend részletezve
+---
 
-### `backend/app.js`
+## Backend API
 
-- Express alkalmazást hoz létre.
-- Engedélyezi a CORS-t és a JSON body feldolgozást.
-- A `frontend` mappát statikus fájlként szolgáltatja:
-  - `app.use(express.static(path.join(__dirname, "../frontend")));`
-- Az alap URL-re (`/`) a `frontend/index.html`-t küldi vissza.
-- API útvonalakat használ a `/api/termekek` alatti kérésekhez.
+### Útvonalak
 
-### `backend/routes/termekRoutes.js`
+```
+GET    /api/termekek              # Összes termék
+GET    /api/termekek/:id         # Termék ID alapján
+POST   /api/termekek             # Új termék hozzáadása
+DELETE /api/termekek/:id         # Termék törlése
+```
 
-- `GET /api/termekek` – az összes termék lekérése.
-- `GET /api/termekek/:id` – egy termék lekérése azonosító alapján.
-- `DELETE /api/termekek/:id` – egy termék törlése azonosító alapján.
+### TermekModel.js – Adatkezelés
 
-### `backend/controllers/TermekController.js`
+- **getAllTermek()** – JSON fájl beolvasása, összes termék visszaadása
+- **getTermekById(id)** – Termék keresése ID alapján
+- **deleteTermek(id)** – Termék törlése a fájlból
+- **saveTermek(ujAdat)** – Új termék hozzáadása (ID auto-increment)
 
-- `getAll(req, res)` – meghívja a modell `getAllTermek` metódusát és JSON formátumban küldi a választ.
-- `getById(req, res)` – meghívja a modell `getTermekById` metódusát, 404-et ad vissza, ha nincs találat.
-- `delete(req, res)` – meghívja a modell `deleteTermek` metódusát és visszaadja a törlés eredményét.
+### TermekController.js – Logika
 
-### `backend/models/TermekModel.js`
+- **getAll()** → `GET /api/termekek`
+- **getById()** → `GET /api/termekek/:id`
+- **delete()** → `DELETE /api/termekek/:id`
+- **create()** → `POST /api/termekek` (új termék mentése)
 
-- `getAllTermek(callback)` – beolvassa a `termekek.json` fájlt és visszaadja a JSON tömböt.
-- `getTermekById(id, callback)` – beolvassa a fájlt, majd visszaadja az `id`-hez tartozó terméket.
-- `deleteTermek(id, callback)` – beolvassa a fájlt, eltávolítja a megadott terméket és visszaírja a frissített tömböt.
+---
 
-### `backend/config/db.js`
+## Frontend Funkciók
 
-- MySQL kapcsolatot hoz létre, de a projekt jelenlegi állapotában nincs használatban.
-- Jelenleg a termékadatok helyette fájlból (`termekek.json`) töltődnek be.
+### Termékek Megtekintése
 
-## Frontend részletezve
+✅ **Termék lista** (12+ könyv)
+- Grid layout (CSS `repeat(auto-fill, minmax(260px, 1fr))`)
+- Könyv kártyák (kép, cím, szerző, ár, kosár gomb)
+- SVG ikona képek
 
-### `frontend/index.html`
+### Keresés
 
-- Modul scriptet használ:
-  - `<script type="module" src="js/main.js"></script>`
-- A `frontend` mappa a statikus gyökér, így a `js` könyvtár relatív útvonala `js/main.js`.
-- Tartalmaz egy navigációs menüt, amely a `shop`, `kosar` és `admin` nézeteket váltja.
+✅ **Működik!** – Real-time keresés a termékcím alapján
+```javascript
+// Termekek.js – keres(szo)
+// Webshop.js – keresesFigyeles()
+// HTML: <input id="kereso-mezo">
+```
+- Kis/nagybetű keresés
+- Azonnali szűrés
 
-### `frontend/js/main.js`
+### Kategória Szűrés
 
-- `import { Webshop } from "./Webshop.js";`
-- Az oldal betöltődésekor létrehoz egy `Webshop` példányt.
+✅ **Működik!** – 8 kategória közül válogatás
+```javascript
+// Termekek.js – szur(kategoria)
+// Webshop.js – szuroFigyeles()
+// HTML: <select id="kategoria-szuro">
+```
+**Kategóriák:** Fantasy, Sci-fi, Krimi, Horror, Klasszikus, Disztópia, Ismeretterjesztő
 
-### `frontend/js/Webshop.js`
+###  Kosár Kezelés
 
-Ez a frontend alkalmazás központi vezérlője.
+✅ **Működik!**
+- Termék hozzáadása kosárhoz
+- Mennyiség módosítása (+ / -)
+- Termék törlése a kosárból
+- Végösszeg kalkuláció
 
-- `constructor()`
-  - kiválasztja a `#main-content` elemet,
-  - létrehoz egy `AdatService` példányt,
-  - létrehoz egy `Kosar` példányt,
-  - elindítja az `init()` metódust.
-- `adatBetoltes()`
-  - fetch-el lekéri az adatokat a `/api/termekek` végpontról.
-- `init()`
-  - betölti a termékadatokat,
-  - létrehozza a `Termekek` komponenst,
-  - beállítja a navigációs és kosár eseményfigyelést.
-- `kosarbaEsemenyFigyeles()`
-  - figyeli a `kosarba` custom eventet,
-  - a termék azonosítója alapján hozzáadja az elemet a kosárhoz.
-- `esemenyFigyeles()`
-  - a navigációs gombokra kattintva vált nézetet.
-- `nezetValtas(tipus)`
-  - `shop` esetén újra betölti az adatokat és megjeleníti a terméklistát,
-  - `kosar` esetén megjeleníti a kosár tartalmát,
-  - `admin` esetén admin nézetet tölt be.
+###  Pont Gyűjtés
 
-### `frontend/js/AdatService.js`
+✅ **Működik bejelentkezéskor!**
+```javascript
+// Kosar.js – fizetes()
+// localStorage: bejelentkezettUser.pontok
+```
+- Minden vásárlás után pont (darabszám alapján)
+- Felhasználó pontok kijelzése a navban
 
-- `get(url)` – GET kérés küldése, JSON visszaolvasása.
-- `post(url, adat)` – POST kérés küldése JSON törzzsel.
-- `delete(url, id)` – DELETE kérés küldése.
+###  Bejelentkezés / Kijelentkezés
 
-### `frontend/js/Termekek.js`
+✅ **Működik!**
+```javascript
+// auth.js – hitelesites(email, jelszo)
+// Webshop.js – loginFigyeles(), logoutFigyeles()
+// localStorage kezelés
+```
+**Demo felhasználók:**
+- `admin@kucko.hu` / `admin123` (admin)
+- `user@kucko.hu` / `user123` (user)
 
-- `constructor(adatLista, szuloElem)` – létrehoz egy `Termek` objektumot minden adatsornak és megjeleníti azokat.
-- `megjelenit()` – végigmegy a terméklistán és meghívja minden elem `megjelenit()` metódusát.
-- `keres(szo)` és `szur(kat)` – jelenleg csak `console.log`-ot írnak, de későbbi bővítésre alkalmasak.
+### Admin Panel
 
-### `frontend/js/Termek.js`
+✅ **Működik!**
 
-- Egyetlen termék megjelenítéséért felelős.
-- A `megjelenit()` létrehoz egy kártyát és egy `Kosárba` gombot.
-- A gomb kattintásakor egy `kosarba` custom eventet küld a termék `id`-jával.
+#### 1. Admin Bejelentkezés Szükséges
+- Csak admin role-lal elérhető
+- Nincs megjelenítve az "Kezelőpult" gomb normál felhasználónak
 
-### `frontend/js/Kosar.js`
+#### 2. Új Termék Hozzáadása
+```javascript
+// AdminUrlap.js – megjelenit() + esemenykezelo()
+// HTML form: nev, szerzo, kategoria, ar, kep, leiras
+// POST /api/termekek
+```
 
-- A kosár logikáját kezeli.
-- `hozzaad(termekAdat)` – ha a termék már van a kosárban, növeli a darabszámát, különben új `KosarElem`-et hoz létre.
-- `megjelennit()` – megjeleníti a kosár tartalmát és az összegzést.
-- `getOsszeg()` – kiszámolja a kosár teljes árát.
-- Eseményfigyelők vannak a mennyiség növelésére, csökkentésére és törlésre.
+#### 3. Termék Törlés
+```javascript
+// TermekAdmin.js – megjelenit()
+// DELETE /api/termekek/:id
+// Törlés után oldal frissítés
+```
 
-### `frontend/js/KosarElem.js`
+#### 4. Terméklista Táblázat
+```javascript
+// AdminTermekek.js – megjelenit()
+// Táblázat: ID | Kép | Név | Szerző | Ár | Műveletek
+```
 
-- Egy kosárban lévő termékegység viselkedéséért felel.
-- `getTermekId()` – visszaadja a termék azonosítóját.
-- `getAr()` – a mennyiség és az egységár szorzata.
-- `novel()` / `csokken()` – mennyiség módosítása.
-- `megjelennit()` – megjeleníti a kosár sort és eseménykezelőket ad a gombokhoz.
+### Nézet Váltás
 
-### `frontend/js/admin/AdminTermekek.js`
+✅ **Működik!**
+```javascript
+// Webshop.js – nezetValtas(tipus)
+```
+- **shop** – Terméklista + keresés/szűrés
+- **login** – Bejelentkezési forma
+- **kosar** – Kosár tartalma
+- **admin** – Admin panel (csak admin)
 
-- Az admin nézet keretét rajzolja fel: űrlap + terméklista táblázat.
-- Létrehozza az `AdminUrlap` és `TermekAdmin` példányokat.
+### Modern UI
 
-### `frontend/js/admin/TermekAdmin.js`
+✅ **CSS3 + Responsive Design**
+```css
+/* style.css */
+--bg: #f8f3eb          /* Krémes beige háttér */
+--accent: #8b5e34      /* Kávé barna akcentus */
+--danger: #c0392b      /* Piros veszélyzóna */
+```
+- **Grid layout** terméklistához
+- **Flexbox** navigáció + kosár
+- **CSS Variables** egységes téma
+- **Sticky nav** teteje
+- **Responsive** media queries
+- **Playfair Display** (címek) + **Open Sans** (szöveg)
+- **Hover effektusok** interaktivitáshoz
 
-- Minden termékhez egy admin táblázatsort hoz létre.
-- A `Törlés` gomb megnyomásakor `DELETE /api/termekek/:id` kérés küldése történik.
-- Sikeres törlés után újratölti az oldalt.
+---
 
-### `frontend/js/admin/AdminUrlap.js`
+## Funkciók Listája
 
-- Egy űrlapot jelenít meg új termék hozzáadásához.
-- A beküldéskor egy POST kérést próbál elküldeni a backend felé.
-- **Fontos**: a backend jelenleg nem támogatja a `POST /api/termekek` végpontot, ezért a termék hozzáadása most nem fog működni.
+| Funkció | Státusz | Leírás |
+|---------|---------|--------|
+| Termék lista | ✅ | 12+ könyv Grid-ben |
+| Keresés | ✅ | Cím alapján real-time |
+| Kategória szűrés | ✅ | 8 kategória |
+| Kosár hozzáadás | ✅ | Egy kattintás |
+| Kosár módosítás | ✅ | +/-, törlés |
+| Pont gyűjtés | ✅ | Vásárláskor pontok |
+| Bejelentkezés | ✅ | Email + jelszó |
+| Kijelentkezés | ✅ | Kijelentkezés gomb |
+| Admin panel | ✅ | Admin nézet |
+| Termék hozzáadás | ✅ | Új termék forma |
+| Termék törlés | ✅ | Törlés gomb |
+| Responsive design | ✅ | Mobile-friendly |
 
-## Működési kapcsolatok
+---
 
-- A böngésző betölti a `frontend/index.html` fájlt.
-- Ez elindítja a `frontend/js/main.js` modult.
-- A `Webshop` komponens lekéri az adatokat a backend `/api/termekek` végpontjáról.
-- A termékadatok `Termekek` és `Termek` objektumokká alakulnak.
-- A kosár eseményeket a `Kosar` és `KosarElem` kezelik.
-- Az admin nézetben a törlés közvetlenül a backend `DELETE /api/termekek/:id` végpontját használja.
+## Technológiai Stack
 
-## Jelenlegi korlátozások / hibák
+- **Frontend**: HTML5, ES6+ modules, CSS3 (Grid, Flexbox, Variables)
+- **Backend**: Node.js, Express.js
+- **Adatkezelés**: JSON file (termekek.json)
+- **Autentikáció**: localStorage + hitelesites()
+- **API**: REST (GET, POST, DELETE)
+- **Design**: CSS3 modern (beige/barna téma)
 
-- A `frontend/js/admin/AdminUrlap.js` POST-ot küld, de a backend nem kezeli a `POST /api/termekek` kéréseket.
-- A `backend/config/db.js` jelenleg nincs használatban.
-- A gyökérben lévő `js/` mappa duplikátum, ami zavart okozhat. A valódi frontend modulok a `frontend/js/` alatt találhatók.
+---
 
-## Javítási javaslatok
+## 📋 Adatformátum
 
-1. Ha a backend a fájl alapú adatkezelést tartom meg, akkor hozzáadok `POST /api/termekek` route-ot és egy `addTermek` metódust a modellhez.
-2. Ha MySQL-t szeretnék használni, akkor a `backend/config/db.js`-t kell beépíteni és a modell kódját adatbázis-hívásokra kell átalakítani.
-3. A gyökérben lévő `js/` mappa törlése vagy elkerülése csökkenti a hibalehetőséget.
+### Termék (termekek.json)
 
-## Összegzés
+```json
+{
+  "id": 1,
+  "szerzo": "J.R.R. Tolkien",
+  "nev": "A Gyűrűk Ura",
+  "kategoria": "Fantasy",
+  "kep": "<svg>...</svg>",
+  "leiras": "Egy gyűrű mind felett.",
+  "ar": 5990
+}
+```
 
-- A backend feladata az adatok szolgáltatása és a statikus frontend kiszolgálása.
-- A frontend feladata a termékek megjelenítése, kosár kezelés és admin nézet vezérlése.
-- A projekt most működő GET/DELETE API-val rendelkezik, de az adminisztratív hozzáadás még nincs befejezve.
+### Bejelentkezett Felhasználó (localStorage)
+
+```json
+{
+  "email": "admin@kucko.hu",
+  "jelszo": "admin123",
+  "role": "admin",
+  "pontok": 15
+}
+```
+
+---
+
+## 🚀 Webshop.js – Vezérlő Logika
+
+**Központi alkalmazás vezérlő**:
+
+```javascript
+// Inicializáció
+constructor() → init() → loadData() → setupEventListeners()
+
+// Nézet váltás
+nezetValtas(shop|login|kosar|admin)
+
+// Event kezelés
+- keresesFigyeles() → Termekek.keres()
+- szuroFigyeles() → Termekek.szur()
+- kosarbaEsemenyFigyeles() → Kosar.hozzaad()
+- ujAdatFigyeles() → AdminUrlap POST
+- torlesEsemenyFigyeles() → TermekAdmin DELETE
+- loginFigyeles() → auth.hitelesites()
+- logoutFigyeles() → kijelentkezés
+- navFrissites() → pontok és gombók frissítése
+```
+
+---
+
+## CSS Stílus Paletta
+
+```css
+:root {
+  --bg: #f8f3eb;              /* Háttér - krémes beige */
+  --surface: #ffffff;         /* Felület - fehér */
+  --text: #342917;            /* Szöveg - csokoládé barna */
+  --muted: #6d5a4a;           /* Tompított - világos barna */
+  --accent: #8b5e34;          /* Akcentus - kávé barna */
+  --danger: #c0392b;          /* Veszély - piros */
+  --border: #d8c1a8;          /* Szegély - beige */
+  --shadow: 0 14px 35px rgba(52, 41, 25, 0.08); /* Árnyék */
+  --radius: 12px;             /* Sarkok */
+}
+```
+
+---
+
+## 📱 Responsive Breakpoints
+
+```css
+/* Desktop */
+min-width: 1120px
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr))
+
+/* Tablet / Mobile */
+@media (max-width: 768px)
+- Stack flex: flex-direction: column
+- Kosár elemek egyvonalasak maradnak
+- Nav: center align
+- Szűrők: teljes szélesség
+```
+
+---
+
+## Event Flow
+
+```
+1. Bejelentkezés
+   → localStorage.setItem("bejelentkezettUser")
+   → navFrissites() → gombók frissítése
+   → nezetValtas("shop")
+
+2. Keresés
+   → input event #kereso-mezo
+   → keresesFigyeles() → Termekek.keres()
+   → megjelenit(szurtLista)
+
+3. Szűrés
+   → change event #kategoria-szuro
+   → szuroFigyeles() → Termekek.szur()
+   → megjelenit(szurtLista)
+
+4. Kosárba
+   → click "Kosárba" gomb
+   → CustomEvent "kosarba" dispath
+   → kosarbaEsemenyFigyeles()
+   → Kosar.hozzaad(termekAdat)
+
+5. Vásárlás
+   → click "Megrendelem" gomb
+   → Kosar.fizetes()
+   → pontok += darabszám
+   → localStorage frissítés
+   → userFrissites event
+
+6. Admin hozzáadás
+   → submit #uj-termek-form
+   → AdminUrlap.esemenykezelo()
+   → POST /api/termekek
+   → ujAdatFelvitel event
+   → ujAdatFigyeles()
+   → nezetValtas("admin")
+
+7. Admin törlés
+   → click "Törlés" gomb
+   → adatTorles event
+   → torlesEsemenyFigyeles()
+   → DELETE /api/termekek/:id
+   → nezetValtas("admin")
+```
+
+---
+
+## Modulok Összefoglalása
+
+| Modul | Felelősség |
+|-------|-----------|
+| **main.js** | App indítás |
+| **Webshop.js** | Központi vezérlő + event handling |
+| **AdatService.js** | API fetch wrapper |
+| **auth.js** | Bejelentkezési adatok + hitelesítés |
+| **Termekek.js** | Termék lista + keresés/szűrés |
+| **Termek.js** | Egyetlen termék kártya |
+| **Kosar.js** | Kosár logika + pont gyűjtés |
+| **KosarElem.js** | Kosár sor + mennyiség vezérlés |
+| **AdminTermekek.js** | Admin nézet + forma + táblázat |
+| **AdminUrlap.js** | Új termék form + POST |
+| **TermekAdmin.js** | Termék sorkezelés + törlés |
+
+---
+
+## Teljes Funkcionális Projekt
+
+Ez a projekt **teljesen működő**, összes funkció implementálva:
+- ✅ Backend CRUD (GET, POST, DELETE)
+- ✅ Frontend moduláris architektúra
+- ✅ Bejelentkezés + punkt gyűjtés
+- ✅ Kosár kezelés
+- ✅ Admin panel
+- ✅ Keresés + kategória szűrés
+- ✅ Modern responsive UI
+- ✅ localStorage adatkezelés
+- ✅ Custom eventos kezelés
+
