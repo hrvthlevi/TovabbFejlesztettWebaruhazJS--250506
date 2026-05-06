@@ -14,41 +14,43 @@ export class KosarElem {
     novel() { this.#db++; }
     csokken() { if (this.#db > 1) this.#db--; }
 
-    megjelenit() {
-        const html = `
-            <div class="kosar-elem" style="border-bottom: 1px solid #eee; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+megjelenit() {
+    const html = `
+        <div class="kosar-elem">
+            <div class="kosar-info">
                 <span><strong>${this.#termekAdat.nev}</strong></span>
-                <div>
-                    <button class="csokken-btn">-</button>
-                    <span class="db">${this.#db} db</span>
-                    <button class="novel-btn">+</button>
-                </div>
                 <span>${this.getAr()} Ft</span>
-                <button class="torol-btn" style="color: red;">X</button>
             </div>
-        `;
-        this.#szuloElem.insertAdjacentHTML("beforeend", html);
-        this.#esemenykezelok();
-    }
+            <div class="kosar-vezerlok">
+                <button class="csokken-btn">-</button>
+                <span class="db">${this.#db} db</span>
+                <button class="novel-btn">+</button>
+                <button class="torol-btn">Törlés</button>
+            </div>
+        </div>
+    `;
+    this.#szuloElem.insertAdjacentHTML("beforeend", html);
+    this.#esemenykezelok();
+}
 
-    #esemenykezelok() {
-        const elem = this.#szuloElem.lastElementChild;
+#esemenykezelok() {
+    const elem = this.#szuloElem.lastElementChild;
 
-        elem.querySelector(".novel-btn").addEventListener("click", () => {
-            this.#sajatEsemeny("novelEsemeny");
-        });
+    elem.querySelector(".novel-btn").addEventListener("click", () => {
+        this.#sajatEsemeny("novelEsemeny");
+    });
 
-        elem.querySelector(".csokken-btn").addEventListener("click", () => {
-            this.#sajatEsemeny("csokkenEsemeny");
-        });
+    elem.querySelector(".csokken-btn").addEventListener("click", () => {
+        this.#sajatEsemeny("csokkenEsemeny");
+    });
 
-        elem.querySelector(".torol-btn").addEventListener("click", () => {
-            this.#sajatEsemeny("torlesEsemeny");
-        });
-    }
+    elem.querySelector(".torol-btn").addEventListener("click", () => {
+        this.#sajatEsemeny("torlesEsemeny");
+    });
+}
 
-    #sajatEsemeny(nev) {
-        const ev = new CustomEvent(nev, { detail: this.#termekAdat.id });
-        window.dispatchEvent(ev);
-    }
+#sajatEsemeny(nev) {
+    const ev = new CustomEvent(nev, { detail: this.#termekAdat.id });
+    window.dispatchEvent(ev);
+}
 }

@@ -19,6 +19,13 @@ const TermekController = {
             if (err) return res.status(500).json({ message: "Hiba törléskor" });
             res.json({ message: "Sikeres törlés" });
         });
+    },
+    create: (req, res) => {
+        const ujAdat = req.body;
+        TermekModel.saveTermek(ujAdat, (err, elmentettAdat) => {
+            if (err) return res.status(500).json({ message: "Hiba mentéskor" });
+            res.status(201).json(elmentettAdat);
+        });
     }
 };
 

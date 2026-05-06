@@ -1,22 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Könyvesbolt</title>
-    <script type="module" src="js/main.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Könyvkuckó</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="img/coffee-beans.png">
+    <script type="module" src="./js/main.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="brand">
+          <h1>Könyvkuckó</h1>
+          <p>Találd meg a következő nagy kalandodat nálunk!</p>
+        </div>
+      </div>
+    </header>
 
-    <nav>
-        <button data-view="shop">Bolt</button>
-        <button data-view="kosar">Kosár</button>
-        <button data-view="admin">Adminisztráció</button>
+    <nav class="main-nav">
+      <div class="container nav-buttons">
+        <button data-view="shop" class="active">Böngészés</button>
+        <button data-view="kosar">Saját kosaram</button>
+        <button data-view="admin">Kezelőpult</button>
+      </div>
     </nav>
 
-    <hr> <main id="main-content">
-        <p>Válassz egy menüpontot!</p>
+    <main id="main-content" class="container">
+      <section class="filters container">
+        <div class="filter-group">
+          <label for="kereso-mezo">Keresés:</label>
+          <input
+            type="text"
+            id="kereso-mezo"
+            placeholder="Írd be a könyv címét..."
+          />
+        </div>
+        <div class="filter-group">
+          <label for="kategoria-szuro">Kategória:</label>
+          <select id="kategoria-szuro">
+            <option value="all">Összes kategória</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Disztópia">Disztópia</option>
+            <option value="Ismeretterjesztő">Ismeretterjesztő</option>
+            <option value="Krimi">Krimi</option>
+            <option value="Sci-fi">Sci-fi</option>
+            <option value="Klasszikus">Klasszikus</option>
+            <option value="Horror">Horror</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="hero">
+        <h2>Vackold be magad egy jó könyvvel! ☕</h2>
+        <p>Vannak napok, amikor csak egy jó sztori hiányzik...</p>
+      </section>
+
+      <div id="product-list"></div>
     </main>
 
-</body>
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2026 Könyvkuckó – Készült nagy odafigyeléssel.</p>
+      </div>
+    </footer>
+  </body>
 </html>

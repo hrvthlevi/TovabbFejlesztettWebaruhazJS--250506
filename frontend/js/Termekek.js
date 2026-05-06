@@ -9,20 +9,34 @@ export class Termekek {
     adatLista.forEach((adat) => {
       this.#lista.push(new Termek(adat, this.#szuloElem));
     });
-    this.megjelenit()
+    this.megjelenit(this.#lista);
   }
-  megjelenit() {
+
+  megjelenit(lista) {
     this.#szuloElem.innerHTML = "";
-    this.#lista.forEach((termek) => {
+    lista.forEach((termek) => {
       termek.megjelenit();
     });
   }
 
-  keres(szo) {
-    console.log("Keresés folyamatban:", szo);
+  szur(kat) {
+    if (kat === "all" || kat === "") {
+      this.megjelenit(this.#lista);
+    } else {
+      const szurtLista = this.#lista.filter((termek) => {
+        return termek.getKategoria && termek.getKategoria() === kat;
+      });
+      this.megjelenit(szurtLista);
+    }
   }
 
-  szur(kat) {
-    console.log("Szűrés kategóriára:", kat);
+  keres(szo) {
+    const szurtLista = this.#lista.filter((termek) => {
+      if (termek.getNev) {
+        return termek.getNev().toLowerCase().includes(szo.toLowerCase());
+      }
+      return false;
+    });
+    this.megjelenit(szurtLista);
   }
 }

@@ -1,36 +1,51 @@
 export class AdatService {
-    async get(url) {
+    #BASE_URL = "http://192.168.31.228:3000"; 
+
+    async get(vegpont) {
         try {
-            const valasz = await fetch(url);
-            if (!valasz.ok) throw new Error("Hiba a letöltésnél");
+            const valasz = await fetch(this.#BASE_URL + vegpont);
+            if (!valasz.ok) throw new Error(`Hiba a letöltésnél: ${valasz.status}`);
             return await valasz.json();
         } catch (hiba) {
-            console.error("Service hiba:", hiba);
+            console.error("Service hiba (GET):", hiba);
             throw hiba;
         }
     }
 
-    async post(url, adat) {
+    async post(vegpont, adat) {
         try {
-            const valasz = await fetch(url, {
+            const valasz = await fetch(this.#BASE_URL + vegpont, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(adat)
             });
+
+            if (!valasz.ok) {
+                const hibaSzoveg = await valasz.text();
+                console.error("Szerver hibaüzenete:", hibaSzoveg);
+                throw new Error(`Szerver hiba: ${valasz.status}`);
+            }
+
             return await valasz.json();
         } catch (hiba) {
-            console.error("Service hiba:", hiba);
+            console.error("Service hiba (POST):", hiba);
+            throw hiba; 
         }
     }
 
-    async delete(url, id) {
+    async delete(vegpont, id) {
         try {
-            const valasz = await fetch(`${url}/${id}`, {
+            const valasz = await fetch(`${this.#BASE_URL}${vegpont}/${id}`, {
                 method: "DELETE"
             });
+
+            if (!valasz.ok) throw new Error(`Hiba a törlésnél: ${valasz.status}`);
+
+            if (valasz.status === 204) return { success: true }; 
             return await valasz.json();
         } catch (hiba) {
-            console.error("Service hiba:", hiba);
+            console.error("Service hiba (DELETE):", hiba);
+            throw hiba;
         }
     }
 }

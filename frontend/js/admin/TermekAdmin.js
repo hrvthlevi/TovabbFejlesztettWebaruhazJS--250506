@@ -23,20 +23,15 @@ export class TermekAdmin {
     `;
 
     this.#szuloElem.insertAdjacentHTML("beforeend", sor);
-
     this.esemenykezelo();
   }
-  esemenykezelo() {
-    const gomb = this.#szuloElem.querySelector(`[data-id="${this.#adat.id}"]`);
 
+esemenykezelo() {
+    const gomb = this.#szuloElem.lastElementChild.querySelector(".torol");
     gomb.addEventListener("click", () => {
-      fetch(`http://localhost:3000/api/termekek/${this.#adat.id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then(() => {
-          location.reload(); 
-        });
+        if(confirm("Biztosan törlöd?")) {
+            window.dispatchEvent(new CustomEvent("adatTorles", { detail: this.#adat.id }));
+        }
     });
-  }
+}
 }

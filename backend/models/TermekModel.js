@@ -27,6 +27,19 @@ const TermekModel = {
                 callback(null);
             });
         });
+    },
+    saveTermek: (ujAdat, callback) => {
+        fs.readFile(filePath, "utf-8", (err, data) => {
+            if (err) return callback(err);
+            const termekek = JSON.parse(data);
+            const ujId = termekek.length > 0 ? Math.max(...termekek.map(t => t.id)) + 1 : 1;
+            ujAdat.id = ujId;
+            termekek.push(ujAdat);
+            fs.writeFile(filePath, JSON.stringify(termekek, null, 2), (err) => {
+                if (err) return callback(err);
+                callback(null, ujAdat);
+            });
+        });
     }
 };
 

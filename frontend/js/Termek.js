@@ -7,6 +7,7 @@ export class Termek {
   #leiras;
   #ar;
   #szerzo;
+  #adat;
 
   constructor(adat, szuloElem) {
     this.#id = adat.id;
@@ -16,21 +17,33 @@ export class Termek {
     this.#szuloElem = szuloElem;
     this.#leiras = adat.leiras;
     this.#ar = adat.ar;
+    this.#adat = adat;
     this.#szerzo = adat.szerzo;
+  }
+
+  getKategoria() {
+    return this.#kategoria;
+  }
+  getNev() {
+    return this.#adat.nev;
   }
 
   megjelenit() {
     const termekHTML = `
-      <div class="termek-kartya" style="border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 220px; vertical-align: top;">
-        <img src="${this.#kep}" alt="${this.#nev}" style="width: 100%;">
-        <h3>${this.#nev}</h3>
-        <p><strong>Szerző:</strong> ${this.#szerzo}</p>
-        <p><strong>Kategória:</strong> ${this.#kategoria}</p>
-        <p><strong>Ár:</strong> ${this.#ar} Ft</p>
-        <button id="v-${this.#id}">Kosárba</button>
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="${this.#kep}" alt="${this.#nev}">
+        </div>
+        <div class="book-info">
+          <h3 class="book-title">${this.#nev}</h3>
+          <p class="book-author">${this.#szerzo}</p>
+          <p class="book-description">${this.#kategoria}</p>
+          <p class="book-price">${this.#ar} Ft</p>
+          <button id="v-${this.#id}" class="buy-button">Kosárba</button>
+        </div>
       </div>
     `;
-    this.#szuloElem.insertAdjacentHTML("beforeend", termekHTML); 
+    this.#szuloElem.insertAdjacentHTML("beforeend", termekHTML);
 
     const gomb = document.querySelector(`#v-${this.#id}`);
     gomb.addEventListener("click", () => {
