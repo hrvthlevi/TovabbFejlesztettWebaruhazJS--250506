@@ -4,170 +4,269 @@
     "szerzo": "J.R.R. Tolkien",
     "nev": "A Gyűrűk Ura",
     "kategoria": "Fantasy",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
+    "kep": "https://placehold.co/300x450/334155/ffffff?text=A+Gy%C5%B1r%C5%B1k+Ura",
     "leiras": "Egy gyűrű mind felett.",
     "ar": 5990
   },
   {
-    "id": 3,
-    "szerzo": "Agatha Christie",
-    "nev": "Gyilkosság az Orient expresszen",
-    "kategoria": "Krimi",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Hercule Poirot nyomoz.",
-    "ar": 3800
-  },
-  {
-    "id": 4,
+    "id": 2,
     "szerzo": "Frank Herbert",
     "nev": "Dűne",
     "kategoria": "Sci-fi",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
+    "kep": "https://placehold.co/300x450/1e293b/ffffff?text=D%C5%B1ne",
     "leiras": "A fűszernek folynia kell.",
     "ar": 5490
   },
   {
-    "id": 5,
-    "szerzo": "Stephen King",
-    "nev": "Ragyogás",
-    "kategoria": "Horror",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Szálloda a hegyekben.",
-    "ar": 4900
-  },
-  {
-    "id": 6,
-    "szerzo": "Jo Nesbo",
-    "nev": "Hóember",
-    "kategoria": "Krimi",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Osloi sorozatgyilkos.",
-    "ar": 4200
-  },
-  {
-    "id": 7,
-    "szerzo": "Jane Austen",
-    "nev": "Büszkeség és balítélet",
-    "kategoria": "Klasszikus",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Romantikus klasszikus.",
-    "ar": 2990
-  },
-  {
-    "id": 8,
+    "id": 3,
     "szerzo": "Stephen King",
     "nev": "Az",
     "kategoria": "Horror",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
+    "kep": "https://placehold.co/300x450/7f1d1d/ffffff?text=Az",
     "leiras": "A csatornában lakik.",
     "ar": 6200
   },
   {
-    "id": 9,
-    "szerzo": "Isaac Asimov",
-    "nev": "Alapítvány",
-    "kategoria": "Sci-fi",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Galaktikus birodalom.",
-    "ar": 4600
+    "id": 4,
+    "szerzo": "Jane Austen",
+    "nev": "Büszkeség és balítélet",
+    "kategoria": "Klasszikus",
+    "kep": "https://placehold.co/300x450/7c3aed/ffffff?text=B%C3%BCszkes%C3%A9g+%C3%A9s+bal%C3%ADt%C3%A9let",
+    "leiras": "Romantikus klasszikus.",
+    "ar": 2990
   },
   {
-    "id": 10,
-    "szerzo": "Suzanne Collins",
-    "nev": "Az éhezők viadala",
-    "kategoria": "Disztópia",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Élet-halál harc.",
-    "ar": 3990
-  },
-  {
-    "id": 11,
-    "szerzo": "Andrzej Sapkowski",
-    "nev": "Vaják",
-    "kategoria": "Fantasy",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Ríviai Geralt útja.",
-    "ar": 4500
-  },
-  {
-    "id": 12,
+    "id": 5,
     "szerzo": "Yuval Noah Harari",
     "nev": "Sapiens",
     "kategoria": "Ismeretterjesztő",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
+    "kep": "https://placehold.co/300x450/065f46/ffffff?text=Sapiens",
     "leiras": "Az emberiség története.",
     "ar": 6500
   },
   {
-    "id": 13,
+    "id": 6,
+    "szerzo": "George Orwell",
+    "nev": "1984",
+    "kategoria": "Disztópia",
+    "kep": "https://placehold.co/300x450/111827/ffffff?text=1984",
+    "leiras": "A Nagy Testvér figyel.",
+    "ar": 3900
+  },
+  {
+    "id": 7,
+    "szerzo": "Agatha Christie",
+    "nev": "Tíz kicsi néger",
+    "kategoria": "Krimi",
+    "kep": "https://placehold.co/300x450/92400e/ffffff?text=T%C3%ADz+kicsi+n%C3%A9ger",
+    "leiras": "Rejtély egy szigeten.",
+    "ar": 3500
+  },
+  {
+    "id": 8,
+    "szerzo": "Isaac Asimov",
+    "nev": "Alapítvány",
+    "kategoria": "Sci-fi",
+    "kep": "https://placehold.co/300x450/0f172a/ffffff?text=Alap%C3%ADtv%C3%A1ny",
+    "leiras": "Galaktikus birodalom.",
+    "ar": 4600
+  },
+  {
+    "id": 9,
     "szerzo": "Dan Brown",
     "nev": "A Da Vinci-kód",
     "kategoria": "Krimi",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Szimbólumok és rejtélyek.",
+    "kep": "https://placehold.co/300x450/78350f/ffffff?text=A+Da+Vinci-k%C3%B3d",
+    "leiras": "Szimbólumok és titkok.",
     "ar": 4800
   },
   {
-    "id": 14,
+    "id": 10,
     "szerzo": "Mary Shelley",
     "nev": "Frankenstein",
     "kategoria": "Horror",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
+    "kep": "https://placehold.co/300x450/450a0a/ffffff?text=Frankenstein",
     "leiras": "A teremtés átka.",
     "ar": 3100
   },
   {
-    "id": 15,
+    "id": 11,
     "szerzo": "George R.R. Martin",
     "nev": "Trónok harca",
     "kategoria": "Fantasy",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
+    "kep": "https://placehold.co/300x450/1e3a8a/ffffff?text=Tr%C3%B3nok+harca",
     "leiras": "Közeleg a tél.",
     "ar": 6900
   },
   {
-    "id": 16,
+    "id": 12,
     "szerzo": "Ray Bradbury",
     "nev": "Fahrenheit 451",
     "kategoria": "Disztópia",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Könyvégetők kora.",
+    "kep": "https://placehold.co/300x450/991b1b/ffffff?text=Fahrenheit+451",
+    "leiras": "Könyvégetők világa.",
     "ar": 3300
   },
   {
-    "id": 17,
+    "id": 13,
     "szerzo": "Stieg Larsson",
     "nev": "A tetovált lány",
     "kategoria": "Krimi",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
+    "kep": "https://placehold.co/300x450/374151/ffffff?text=A+tetov%C3%A1lt+l%C3%A1ny",
     "leiras": "Sötét svéd titkok.",
     "ar": 4400
   },
   {
-    "id": 18,
+    "id": 14,
     "szerzo": "Albert Camus",
     "nev": "Közöny",
     "kategoria": "Klasszikus",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
+    "kep": "https://placehold.co/300x450/52525b/ffffff?text=K%C3%B6z%C3%B6ny",
     "leiras": "Létezés és idegenség.",
     "ar": 2800
   },
   {
-    "id": 19,
+    "id": 15,
     "szerzo": "Stephen Hawking",
     "nev": "Az idő rövid története",
     "kategoria": "Ismeretterjesztő",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Honnan ered a mindenség?",
+    "kep": "https://placehold.co/300x450/0f766e/ffffff?text=Az+id%C5%91+r%C3%B6vid+t%C3%B6rt%C3%A9nete",
+    "leiras": "A világegyetem titkai.",
     "ar": 5200
   },
   {
-    "id": 20,
+    "id": 16,
     "szerzo": "Margaret Atwood",
     "nev": "A szolgálólány meséje",
     "kategoria": "Disztópia",
-    "kep": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path></svg>",
-    "leiras": "Sötét vízió a jövőről.",
+    "kep": "https://placehold.co/300x450/881337/ffffff?text=A+szolg%C3%A1l%C3%B3l%C3%A1ny+mes%C3%A9je",
+    "leiras": "Sötét jövőkép.",
     "ar": 4100
+  },
+  {
+    "id": 17,
+    "szerzo": "Jo Nesbo",
+    "nev": "Hóember",
+    "kategoria": "Krimi",
+    "kep": "https://placehold.co/300x450/1f2937/ffffff?text=H%C3%B3ember",
+    "leiras": "Osloi sorozatgyilkos.",
+    "ar": 4200
+  },
+  {
+    "id": 18,
+    "szerzo": "Suzanne Collins",
+    "nev": "Az éhezők viadala",
+    "kategoria": "Disztópia",
+    "kep": "https://placehold.co/300x450/b91c1c/ffffff?text=Az+%C3%A9hez%C5%91k+viadala",
+    "leiras": "Élet-halál harc.",
+    "ar": 3990
+  },
+  {
+    "id": 19,
+    "szerzo": "Andrzej Sapkowski",
+    "nev": "Vaják",
+    "kategoria": "Fantasy",
+    "kep": "https://placehold.co/300x450/1d4ed8/ffffff?text=Vaj%C3%A1k",
+    "leiras": "Ríviai Geralt kalandjai.",
+    "ar": 4500
+  },
+  {
+    "id": 20,
+    "szerzo": "Harper Lee",
+    "nev": "Ne bántsátok a feketerigót!",
+    "kategoria": "Klasszikus",
+    "kep": "https://placehold.co/300x450/57534e/ffffff?text=Ne+b%C3%A1nts%C3%A1tok+a+feketerig%C3%B3t",
+    "leiras": "Igazság és előítélet.",
+    "ar": 3400
+  },
+  {
+    "id": 21,
+    "szerzo": "Bram Stoker",
+    "nev": "Drakula",
+    "kategoria": "Horror",
+    "kep": "https://placehold.co/300x450/7f1d1d/ffffff?text=Drakula",
+    "leiras": "A legendás vámpír.",
+    "ar": 3200
+  },
+  {
+    "id": 22,
+    "szerzo": "Ernest Hemingway",
+    "nev": "Az öreg halász és a tenger",
+    "kategoria": "Klasszikus",
+    "kep": "https://placehold.co/300x450/155e75/ffffff?text=Az+%C3%B6reg+hal%C3%A1sz+%C3%A9s+a+tenger",
+    "leiras": "Küzdelem és kitartás.",
+    "ar": 2700
+  },
+  {
+    "id": 23,
+    "szerzo": "Arthur Conan Doyle",
+    "nev": "Sherlock Holmes",
+    "kategoria": "Krimi",
+    "kep": "https://placehold.co/300x450/44403c/ffffff?text=Sherlock+Holmes",
+    "leiras": "A híres detektív.",
+    "ar": 4300
+  },
+  {
+    "id": 24,
+    "szerzo": "Paulo Coelho",
+    "nev": "Az alkimista",
+    "kategoria": "Klasszikus",
+    "kep": "https://placehold.co/300x450/a16207/ffffff?text=Az+alkimista",
+    "leiras": "Az álmok útja.",
+    "ar": 3600
+  },
+  {
+    "id": 25,
+    "szerzo": "Philip K. Dick",
+    "nev": "Álmodnak-e az androidok elektronikus bárányokkal?",
+    "kategoria": "Sci-fi",
+    "kep": "https://placehold.co/300x450/312e81/ffffff?text=Androidok",
+    "leiras": "Ember és gép határa.",
+    "ar": 5400
+  },
+  {
+    "id": 26,
+    "szerzo": "H.P. Lovecraft",
+    "nev": "Cthulhu hívása",
+    "kategoria": "Horror",
+    "kep": "https://placehold.co/300x450/172554/ffffff?text=Cthulhu+h%C3%ADv%C3%A1sa",
+    "leiras": "Ősi kozmikus rettenet.",
+    "ar": 3700
+  },
+  {
+    "id": 27,
+    "szerzo": "Kurt Vonnegut",
+    "nev": "Az ötös számú vágóhíd",
+    "kategoria": "Sci-fi",
+    "kep": "https://placehold.co/300x450/374151/ffffff?text=Az+%C3%B6t%C3%B6s+sz%C3%A1m%C3%BA+v%C3%A1g%C3%B3h%C3%ADd",
+    "leiras": "Háború és időutazás.",
+    "ar": 4100
+  },
+  {
+    "id": 28,
+    "szerzo": "Victor Hugo",
+    "nev": "A nyomorultak",
+    "kategoria": "Klasszikus",
+    "kep": "https://placehold.co/300x450/7c2d12/ffffff?text=A+nyomorultak",
+    "leiras": "Sorsok és forradalom.",
+    "ar": 5800
+  },
+  {
+    "id": 29,
+    "szerzo": "Neil Gaiman",
+    "nev": "Amerikai istenek",
+    "kategoria": "Fantasy",
+    "kep": "https://placehold.co/300x450/581c87/ffffff?text=Amerikai+istenek",
+    "leiras": "Régi és új istenek harca.",
+    "ar": 4900
+  },
+  {
+    "id": 30,
+    "szerzo": "Carl Sagan",
+    "nev": "Kozmosz",
+    "kategoria": "Ismeretterjesztő",
+    "kep": "https://placehold.co/300x450/082f49/ffffff?text=Kozmosz",
+    "leiras": "Utazás a világegyetemben.",
+    "ar": 6100
   }
 ]
