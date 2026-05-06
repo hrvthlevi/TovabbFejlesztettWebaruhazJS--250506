@@ -48,6 +48,23 @@ export class Kosar {
     }
   }
 
+  fizetes() {
+    const user = JSON.parse(localStorage.getItem("bejelentkezettUser"));
+    let db = this.#lista.length;
+    if (user) {
+      if (!user.pontok) user.pontok = 0;
+      user.pontok += db;
+      localStorage.setItem("bejelentkezettUser", JSON.stringify(user));
+      alert(`Sikeres vásárlás! Gyűjtöttél ${db} pontot`);
+      window.dispatchEvent(new Event("userFrissites"));
+    } else {
+      alert("Sikeres rendelés!");
+    }
+
+    this.#lista = [];
+    this.megjelenit();
+  }
+
   megjelenit() {
     this.#szuloElem.innerHTML = "<h1>Kosár</h1>";
     if (this.#lista.length === 0) {
@@ -67,9 +84,7 @@ export class Kosar {
       );
 
       document.querySelector("#rendeles-btn").addEventListener("click", () => {
-        alert("Sikeres rendelés! Köszönjük a vásárlást!");
-        this.#lista = []; // Kosár ürítése
-        this.megjelenit();
+        this.fizetes();
       });
     }
   }

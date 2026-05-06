@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/x-icon" href="img/coffee-beans.png">
+    <link rel="icon" type="image/x-icon" href="img/coffee-beans.png" />
     <script type="module" src="./js/main.js"></script>
   </head>
   <body>
@@ -23,10 +23,17 @@
     </header>
 
     <nav class="main-nav">
-      <div class="container nav-buttons">
-        <button data-view="shop" class="active">Böngészés</button>
-        <button data-view="kosar">Saját kosaram</button>
-        <button data-view="admin">Kezelőpult</button>
+      <div class="container nav-container">
+        <div class="user-status">
+          <span id="user-pontok" class="hidden"></span>
+        </div>
+        <div class="nav-buttons">
+          <button data-view="shop">Böngészés</button>
+          <button data-view="kosar">Saját kosaram</button>
+          <button data-view="login">Belépés</button>
+          <button data-view="admin" class="hidden">Kezelőpult</button>
+          <button data-nav="logout-gomb" class="hidden">Kijelentkezés</button>
+        </div>
       </div>
     </nav>
 
