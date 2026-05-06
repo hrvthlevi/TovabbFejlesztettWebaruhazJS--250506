@@ -1,0 +1,29 @@
+[
+  {
+    "id": 0,
+    "szerzo": "J.R.R. Tolkien",
+    "nev": "A Gyűrűk Ura",
+    "kategoria": "Fantasy",
+    "kep": "https://picsum.photos/id/24/200/300",
+    "leiras": "Egy gyűrű mind felett, egy gyűrű kegyetlen...",
+    "ar": 5990
+  },
+  {
+    "id": 1,
+    "szerzo": "George Orwell",
+    "nev": "1984",
+    "kategoria": "Disztópia",
+    "kep": "https://picsum.photos/id/367/200/300",
+    "leiras": "A Nagy Testvér szemmel tart téged.",
+    "ar": 3450
+  },
+  {
+    "id": 2,
+    "szerzo": "Yuval Noah Harari",
+    "nev": "Sapiens",
+    "kategoria": "Ismeretterjesztő",
+    "kep": "https://picsum.photos/id/334/200/300",
+    "leiras": "Az emberiség rövid története.",
+    "ar": 4800
+  }
+]
